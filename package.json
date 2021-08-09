@@ -12,11 +12,13 @@
   "dependencies": {
     "@middy/core": "^1.5.2",
     "@middy/http-json-body-parser": "^1.5.2",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
     "lambda-multipart-parser": "^1.0.1",
-    "source-map-support": "^0.5.19",
     "pdf-parse": "^1.1.1",
     "pdf.js-extract": "^0.1.5",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "source-map-support": "^0.5.19"
   },
   "devDependencies": {
     "@serverless/typescript": "^2.23.0",

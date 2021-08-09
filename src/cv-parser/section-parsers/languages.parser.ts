@@ -1,11 +1,10 @@
-import { PDFExtractText } from 'pdf.js-extract';
+import { PDFExtractText } from "pdf.js-extract";
 
-import { SectionParser } from './section.parser.interface';
-import { CVPerson } from '../dto/cvperson.dto';
-import { CVSection } from '../dto/cvsection.dto';
-import { CVLanguage } from '../dto/cvlanguage.dto';
-import { DefaultSectionParser } from './default.parser';
-import config from '../config';
+import { CVPerson } from "../dto/cvperson.dto";
+import { CVSection } from "../dto/cvsection.dto";
+import { CVLanguage } from "../dto/cvlanguage.dto";
+import { DefaultSectionParser } from "./default.parser";
+import config from "../config";
 
 export class LanguagesSectionParser extends DefaultSectionParser {
   do(person: CVPerson, cvSection: CVSection, item: PDFExtractText) {

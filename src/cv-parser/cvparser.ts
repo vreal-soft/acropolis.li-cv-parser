@@ -1,6 +1,4 @@
 import { PDFExtract, PDFExtractResult } from "pdf.js-extract";
-import * as path from "path";
-import * as fs from "fs";
 
 import config from "./config";
 
@@ -66,7 +64,6 @@ export class CVParser {
     for (const page of pdfData.pages) {
       for (const item of page.content) {
         // skip only whitespaces
-        console.log("item.str", item.str);
         if (item.str === " ") continue;
 
         // parse section

@@ -1,28 +1,28 @@
-import { PDFExtractText } from 'pdf.js-extract';
+import { PDFExtractText } from "pdf.js-extract";
 
-import { SectionParser } from './section.parser.interface';
-import { CVPerson } from '../dto/cvperson.dto';
-import { CVSection } from '../dto/cvsection.dto';
-import { PaddingDTO } from './utils/dto/padding.dto';
-import { SequenceDTO } from './dto/sequence.dto';
+import { SectionParser } from "./section.parser.interface";
+import { CVPerson } from "../dto/cvperson.dto";
+import { CVSection } from "../dto/cvsection.dto";
+// import { PaddingDTO } from './utils/dto/padding.dto';
+// import { SequenceDTO } from './dto/sequence.dto';
 
-import { CVParserUtils } from './utils/utils';
-import { Sequencer } from './sequencers/sequencer.interface';
-import { DefaultArraySequencer } from './sequencers/default.array.sequencer';
-import { Filter } from './filters/filter.interface';
+import { CVParserUtils } from "./utils/utils";
+import { Sequencer } from "./sequencers/sequencer.interface";
+import { DefaultArraySequencer } from "./sequencers/default.array.sequencer";
+import { Filter } from "./filters/filter.interface";
 
 export class DefaultSectionParser implements SectionParser {
   public filter: Filter;
 
   constructor(private sequencer: Sequencer = new DefaultArraySequencer()) {
-    if (!sequencer) throw new Error('No provided sequencer');
+    if (!sequencer) throw new Error("No provided sequencer");
   }
 
-  do(person: CVPerson, cvSection: CVSection, item: PDFExtractText) {
+  do(_: CVPerson, cvSection: CVSection, item: PDFExtractText) {
     cvSection.items.push([item.str, item.y]);
   }
 
-  finish(person: CVPerson, cvSection: CVSection) {
+  finish(_: CVPerson, cvSection: CVSection) {
     const itemsPadding = CVParserUtils.calculatePadding(cvSection);
 
     const itemsReconstruct = [];

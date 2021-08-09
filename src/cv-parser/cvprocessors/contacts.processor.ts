@@ -1,10 +1,9 @@
-import { PDFExtractPage } from 'pdf.js-extract';
-import { URL } from 'url';
-import config from '../config';
+import { PDFExtractPage } from "pdf.js-extract";
+import { URL } from "url";
+import config from "../config";
 
-import { CVPerson } from '../dto/cvperson.dto';
-import { CVSection } from '../dto/cvsection.dto';
-import { CVProcessor } from './cvprocessor.interface';
+import { CVPerson } from "../dto/cvperson.dto";
+import { CVProcessor } from "./cvprocessor.interface";
 
 export class ContactsProcessor implements CVProcessor {
   do(pages: PDFExtractPage[], person: CVPerson) {
@@ -12,9 +11,9 @@ export class ContactsProcessor implements CVProcessor {
       // process links
       for (let item of page.links) {
         // email
-        if (item.startsWith('mailto:')) {
+        if (item.startsWith("mailto:")) {
           if (!person.email) {
-            person.email = item.replace('mailto:', '');
+            person.email = item.replace("mailto:", "");
           }
           continue;
         }
@@ -28,7 +27,7 @@ export class ContactsProcessor implements CVProcessor {
             person.profiles = [];
           }
 
-          url.search = '';
+          url.search = "";
           person.profiles.push(url.toString());
         } else {
           if (!person.links) {
@@ -43,7 +42,7 @@ export class ContactsProcessor implements CVProcessor {
       const section: [] = person.sections[sectionName];
 
       for (const item of section) {
-        if (typeof item !== 'string') continue;
+        if (typeof item !== "string") continue;
 
         if (!person.email) {
           let regexResult = config.re.email.exec(item);
