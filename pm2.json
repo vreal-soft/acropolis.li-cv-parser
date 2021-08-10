@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "cv-parser",
+      "exec_mode": "cluster",
+      "instances": "max",
+      "script": "./src/server.ts",
+      "interpreter": "ts-node"
+    }
+  ]
+}

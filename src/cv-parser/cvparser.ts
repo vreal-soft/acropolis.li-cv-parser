@@ -45,7 +45,6 @@ export class CVParser {
   async parse(buffer: Buffer): Promise<CVPerson> {
     const pdfData = await this.extractDataFromPDF(buffer);
     console.log("pdfData", pdfData);
-
     let generatedPerson: CVPerson = new CVPerson();
 
     let currentSection: CVSection = null;
