@@ -4,6 +4,7 @@
       "name": "cv-parser",
       "exec_mode": "cluster",
       "instances": "max",
+      "args": "--project ./tsconfig.json",
       "script": "./src/server.ts",
       "interpreter": "ts-node"
     }

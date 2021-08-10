@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.paths.json",
   "compilerOptions": {
+    "strict": false,
     "lib": ["ESNext"],
     "moduleResolution": "node",
     "noUnusedLocals": true,
