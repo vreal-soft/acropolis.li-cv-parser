@@ -1,5 +1,4 @@
 import { PDFExtract, PDFExtractResult } from "pdf.js-extract";
-
 import config from "./config";
 
 import { SectionDefinition } from "./schema/section_definition.schema";
@@ -11,6 +10,7 @@ import { SectionParser } from "./section-parsers/section.parser.interface";
 import { DefaultSectionParser } from "./section-parsers/default.parser";
 import { ContactsSectionParser } from "./section-parsers/contacts.parser";
 import { LanguagesSectionParser } from "./section-parsers/languages.parser";
+import { EducationSectionParser } from "./section-parsers/education.parser";
 import { CVProcessor } from "./cvprocessors/cvprocessor.interface";
 import { RegexCleanerFilter } from "./section-parsers/filters/regexcleaner.filter";
 
@@ -62,8 +62,8 @@ export class CVParser {
 
     for (const page of pdfData.pages) {
       for (const item of page.content) {
-        // skip only whitespaces
-        if (item.str === " ") continue;
+        // skip empty strings
+        if (item.str.length <= 0) continue;
 
         // parse section
         let possibleSection = this.extractSectionTypeFromString(item.str);
@@ -86,13 +86,20 @@ export class CVParser {
               currentSectionParser = new LanguagesSectionParser();
               break;
             }
+            case "education": {
+              currentSectionParser = new EducationSectionParser();
+              currentSectionParser.filters.push(
+                new RegexCleanerFilter(config.re.page_identificator)
+              );
+              break;
+            }
             case "profile": {
               generatedPerson.name = item.str.trim();
             }
             default: {
               currentSectionParser = new DefaultSectionParser();
-              currentSectionParser.filter = new RegexCleanerFilter(
-                config.re.page_identificator
+              currentSectionParser.filters.push(
+                new RegexCleanerFilter(config.re.page_identificator)
               );
               break;
             }
