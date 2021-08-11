@@ -4,7 +4,7 @@ import { middyfy } from "@libs/lambda";
 import * as parser from "lambda-multipart-parser";
 import { parseCv } from "../../cv-parser";
 
-const hello = async (event) => {
+const cvParser = async (event) => {
   try {
     const { files } = await parser.parse(event);
     console.log("files", files[0]);
@@ -25,4 +25,4 @@ const hello = async (event) => {
   }
 };
 
-export const main = middyfy(hello);
+export const main = middyfy(cvParser);

@@ -16,7 +16,7 @@ Depending on your preferred package manager, follow the instructions below to de
 
 ### Locally
 
-In order to test the hello function locally, run the following command:
+In order to test the cvParser function locally, run the following command:
 
 - `npx sls offline` if you're using NPM
 - `yarn sls offline` if you're using Yarn
@@ -32,11 +32,11 @@ The project code base is mainly located within the `src` folder. This folder is 
 .
 ├── src
 │   ├── functions               # Lambda configuration and source code folder
-│   │   ├── hello
-│   │   │   ├── handler.ts      # `Hello` lambda source code
-│   │   │   ├── index.ts        # `Hello` lambda Serverless configuration
-│   │   │   ├── mock.json       # `Hello` lambda input parameter, if any, for local invocation
-│   │   │   └── schema.ts       # `Hello` lambda input event JSON-Schema
+│   │   ├── cvParser
+│   │   │   ├── handler.ts      # `Cv-parser` lambda source code
+│   │   │   ├── index.ts        # `Cv-parser` lambda Serverless configuration
+│   │   │   ├── mock.json       # `Cv-parser` lambda input parameter, if any, for local invocation
+│   │   │   └── schema.ts       # `Cv-parser` lambda input event JSON-Schema
 │   │   │
 │   │   └── index.ts            # Import/export of all lambda configurations
 │   │
@@ -51,3 +51,8 @@ The project code base is mainly located within the `src` folder. This folder is 
 ├── tsconfig.paths.json         # Typescript paths
 └── webpack.config.js           # Webpack configuration
 ```
+
+### Run in the docker container
+
+`docker build .` Build an image
+`docker run -p 3000:3000 ${imageId}`

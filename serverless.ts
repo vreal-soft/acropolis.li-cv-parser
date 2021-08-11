@@ -1,6 +1,6 @@
 import type { AWS } from "@serverless/typescript";
 
-import hello from "@functions/hello";
+import cvParser from "@functions/cvParser";
 
 const serverlessConfiguration: AWS = {
   service: "cv-parser-v2",
@@ -26,7 +26,7 @@ const serverlessConfiguration: AWS = {
     lambdaHashingVersion: "20201221",
   },
   // import the function via paths
-  functions: { hello },
+  functions: { cvParser },
 };
 
 module.exports = serverlessConfiguration;
